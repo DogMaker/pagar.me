@@ -11,7 +11,8 @@ jobs:
       - image: circleci/postgres
         environment:
           POSTGRES_PASSWORD: "supersecret123"
-
+          entrypoint: node_modules/.bin/sequelize db:migrate --config src/config/database.js --migrations-path src/database/migrations/
+ 
     steps:
       - checkout
       - run:
