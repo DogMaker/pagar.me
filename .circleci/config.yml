@@ -14,10 +14,13 @@ jobs:
   
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
       - run: node_modules/.bin/sequelize db:migrate --config src/config/database.js --migrations-path src/database/migrations/
       - run:
           name: Run tests
-          command: npm install && npm test
+          command: npm test
 
 
 workflows:
