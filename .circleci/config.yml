@@ -1,0 +1,33 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+
+
+jobs:
+  build-and-test:  
+    docker:
+      - image: cimg/node:10.16.0
+      - image: circleci/postgres
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: supersecret123
+          POSTGRES_DB: postgres
+  
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run: node_modules/.bin/sequelize db:migrate --config src/config/database.js --migrations-path src/database/migrations/
+      - run:
+          name: Run tests
+          command: npm test
+
+
+workflows:
+ 
+  sample: 
+    jobs:
+      - build-and-test
+
