@@ -10,9 +10,9 @@ jobs:
       - image: cimg/node:10.16.0
       - image: circleci/postgres
         environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: supersecret123
-          POSTGRES_DB: postgres
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "supersecret123"
+          POSTGRES_DB: "postgres"
   
     steps:
       - checkout
