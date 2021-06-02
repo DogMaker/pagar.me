@@ -1,7 +1,6 @@
 version: 2.1
 
 orbs:
-
   node: circleci/node@4.1
 
 
@@ -9,6 +8,9 @@ jobs:
   build-and-test:  
     docker:
       - image: cimg/node:10.16.0
+      - image: cimg/postgres:latest
+        environment:
+          POSTGRES_PASSWORD: "supersecret123"
 
     steps:
       - checkout
