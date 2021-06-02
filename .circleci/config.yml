@@ -1,44 +1,20 @@
-version: 2.1
-
-orbs:
-  node: circleci/node@4.1
-
-
+version: 2.0
 jobs:
-  build-and-test:  
+  build:
     docker:
-      - image: cimg/node:10.16.0
-      - image: circleci/postgres
-        environment:
-          POSTGRES_USER: "postgres"
-          POSTGRES_PASSWORD: "supersecret123"
-          POSTGRES_DB: "postgres"
-  
+      - image: your/image_for_primary_container
+      - image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: your_postgres_user
+      POSTGRES_DB: your_postgres_test
+    workDir: /your/workdir
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: npm install
-      - run: apt-get install -y sudo # https://discuss.circleci.com/t/sudo-command-not-found/14208/4
-      - run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh       
       - run:
           name: install dockerize
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
-            DOCKERIZE_VERSION: v0.3.0   
+            DOCKERIZE_VERSION: v0.3.0
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-          
-      - run: node_modules/.bin/sequelize db:migrate --config src/config/database.js --migrations-path src/database/migrations/
-      - run:
-          name: Run tests
-          command: npm test
-
-
-workflows:
- 
-  sample: 
-    jobs:
-      - build-and-test
-
