@@ -1,19 +1,36 @@
-version: 2.0
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+
+
 jobs:
-  build:
+  build-and-test:  
     docker:
-      - image: postgres:9.6.2-alpine
-    environment:
-      POSTGRES_USER: your_postgres_user
-      POSTGRES_DB: your_postgres_test
-    workDir: /your/workdir
+      - image: cimg/node:10.16.0
+      - image: circleci/postgres
+        environment:
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "supersecret123"
+          POSTGRES_DB: "postgres"
+  
     steps:
       - checkout
       - run:
-          name: install dockerize
-          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-          environment:
-            DOCKERIZE_VERSION: v0.3.0
+          name: Install dependencies
+          command: npm install
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+          
+      - run: node_modules/.bin/sequelize db:migrate --config src/config/database.js --migrations-path src/database/migrations/
+      - run:
+          name: Run tests
+          command: npm test
+
+
+workflows:
+ 
+  sample: 
+    jobs:
+      - build-and-test
