@@ -14,7 +14,8 @@ jobs:
   
     steps:
       - checkout
-      - run:  apt install sudo
+      - run: apt-get update
+      - run:  apt-get -y install sudo
       - run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh    
       - run:
           name: install dockerize
