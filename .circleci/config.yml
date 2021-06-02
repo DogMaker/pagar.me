@@ -8,7 +8,7 @@ jobs:
   build-and-test:  
     docker:
       - image: cimg/node:10.16.0
-      - image: cimg/postgres:latest
+      - image: circleci/postgres
         environment:
           POSTGRES_PASSWORD: "supersecret123"
 
