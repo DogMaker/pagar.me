@@ -10,7 +10,8 @@ jobs:
       - image: cimg/node:10.16.0
       - image: circleci/postgres
         environment:
-          POSTGRES_PASSWORD: "supersecret123"
+          POSTGRES_HOST: localhost
+          POSTGRES_PASSWORD: supersecret123
   
     steps:
       - checkout
