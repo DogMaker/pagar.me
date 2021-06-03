@@ -12,6 +12,7 @@ module.exports =  app.use((req, res, next) => {
 
 			if(user[0] === undefined){
 				res.status(401).send({ error:'There was a problem with the user or password!'} )
+				return next()
 			}
 
 			if (login && password && login === user[0].name && password === user[0].pass) {

@@ -1,7 +1,7 @@
 const testServer = require('./testServer');
 
 describe('Server', () => {
-	it('POST /transactions should respond with 200', async () => {
+	it('POST /transactions should respond with 201', async () => {
 		const response = await testServer.post('/api/v1/transactions')
 			.set('Authorization','Basic aHVnbzoxMjM0NTY=')
 			.send({
@@ -32,6 +32,33 @@ console.log(response.body);
 				card_cvv: 110,
 				client_id: Number.MAX_SAFE_INTEGER,
 			});
+
+		expect(response.statusCode).toBe(400);
+	});
+
+	it('GET /transactions should respond with 200', async () => {
+		const response = await testServer.get('/api/v1/transactions')
+			.set('Authorization','Basic aHVnbzoxMjM0NTY=')
+
+		expect(response.statusCode).toBe(200);
+	});
+
+	it('GET /transactions/id should respond with 200', async () => {
+		const response = await testServer.get('/api/v1/transactions/1')
+			.set('Authorization','Basic aHVnbzoxMjM0NTY=')
+
+		expect(response.statusCode).toBe(200);
+	});
+
+	it('GET /balance should respond with 200', async () => {
+		const response = await testServer.get('/api/v1/balance')
+			.set('Authorization','Basic aHVnbzoxMjM0NTY=')
+
+		expect(response.statusCode).toBe(200);
+	});
+	it('GET /rota-invalida should respond with 400', async () => {
+		const response = await testServer.get('/api/v1/rota-invalida')
+			.set('Authorization','Basic aHVnbzoxMjM0NTY=')
 
 		expect(response.statusCode).toBe(400);
 	});
