@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "e2d9ec26-fd56-40e3-909c-3774863af75c",
+		"name": "confluence",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "confluence",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "#SUmi19*%",
+						"username": "hugsil"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://wiki.labcollab.net/confluence/rest/api/content/510530076?expand=body.storage",
+					"protocol": "https",
+					"host": [
+						"wiki",
+						"labcollab",
+						"net"
+					],
+					"path": [
+						"confluence",
+						"rest",
+						"api",
+						"content",
+						"510530076"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "body.storage"
+						}
+					]
+				},
+				"description": "ok"
+			},
+			"response": []
+		},
+		{
+			"name": "manga",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml"
+					},
+					{
+						"key": "X-Tableau-Auth",
+						"value": "zWr4Hmc_QLCgZ-xRtJXoMg|n7JQc8cYvt0a6bGOqMOz4JnNmWPBM8jB"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://skynet.db.amazon.com/api/3.1/sites/a946d998-2ead-4894-bb50-1054a91dcab3/views/79db6728-eaa6-4b98-9897-6898d70b6c82/data?vf_locale=pt_BR,en_US&vf_Start%20Date%20B=2021-05-17&vf_End%20Date%20B=2021-05-17&vf_Start%20Date%20A=2021-05-17&vf_End%20Date%20A=2021-05-17",
+					"protocol": "https",
+					"host": [
+						"skynet",
+						"db",
+						"amazon",
+						"com"
+					],
+					"path": [
+						"api",
+						"3.1",
+						"sites",
+						"a946d998-2ead-4894-bb50-1054a91dcab3",
+						"views",
+						"79db6728-eaa6-4b98-9897-6898d70b6c82",
+						"data"
+					],
+					"query": [
+						{
+							"key": "vf_locale",
+							"value": "pt_BR,en_US"
+						},
+						{
+							"key": "vf_domain_name",
+							"value": "HomeAutomation",
+							"disabled": true
+						},
+						{
+							"key": "vf_intent",
+							"value": "CloseDeviceIntent",
+							"disabled": true
+						},
+						{
+							"key": "vf_Start%20Date%20B",
+							"value": "2021-05-17"
+						},
+						{
+							"key": "vf_End%20Date%20B",
+							"value": "2021-05-17"
+						},
+						{
+							"key": "vf_Start%20Date%20A",
+							"value": "2021-05-17"
+						},
+						{
+							"key": "vf_End%20Date%20A",
+							"value": "2021-05-17"
+						},
+						{
+							"key": "vf_utterance_id_datetime_utc",
+							"value": "2020-06-30,2020-06-28",
+							"disabled": true
+						},
+						{
+							"key": "vf_Choose%20a%20Metric",
+							"value": "GSR",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://skynet.db.amazon.com/api/3.1/auth/signin",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"credentials\": { \"name\": \"hugsil\", \"password\": \"#ToddyMandisson2019\", \"site\": { \"contentUrl\": \"\" } } }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://skynet.db.amazon.com/api/3.1/auth/signin"
+			},
+			"response": []
+		}
+	]
+}

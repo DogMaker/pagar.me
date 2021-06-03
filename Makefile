@@ -21,6 +21,6 @@ start-postgres:
 setup-postgres-db: start-postgres migrate
 .PHONY: setup-postgres-db
 
-tests: 
+tests:
 	@docker-compose run tests
 .PHONY: tests
